@@ -1,223 +1,200 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Poster MBK – Studio Hikaïa</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poster MBK</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background-color: #0f0f0f;
+      font-family: Arial, sans-serif;
+      background-color: black;
       color: white;
-      font-family: 'Helvetica Neue', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-      padding: 2rem;
     }
-
     .container {
       display: flex;
-      flex-direction: row;
-      gap: 2rem;
-      max-width: 1200px;
-      width: 100%;
+      flex-wrap: wrap;
+      padding: 50px;
+      justify-content: center;
+      gap: 60px;
     }
-
-    .carousel {
+    .left {
       max-width: 500px;
-      width: 100%;
       position: relative;
     }
-
+    .carousel {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
     .carousel img {
       width: 100%;
-      border-radius: 8px;
-      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
     }
-
-    .carousel-controls {
+    .carousel-thumbnails {
       display: flex;
-      justify-content: space-between;
-      margin-top: 0.5rem;
+      justify-content: center;
+      margin-top: 15px;
+      gap: 10px;
     }
-
-    .carousel-controls button {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: white;
-      cursor: pointer;
-    }
-
-    .thumbnails {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-
-    .thumbnails img {
+    .carousel-thumbnails img {
       width: 60px;
       height: 60px;
       object-fit: cover;
-      border-radius: 4px;
       cursor: pointer;
-      border: 2px solid transparent;
+      border-radius: 6px;
+      opacity: 0.5;
     }
-
-    .thumbnails img.active {
-      border-color: white;
+    .carousel-thumbnails img.active {
+      opacity: 1;
+      border: 2px solid white;
     }
-
-    .product-info {
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+    .nav-arrow.left {
+      left: -40px;
+    }
+    .nav-arrow.right {
+      right: -40px;
+    }
+    .right {
       max-width: 400px;
-      display: flex;
-      flex-direction: column;
     }
-
-    .product-info h1 {
-      font-size: 2rem;
-      margin-bottom: 0.2rem;
+    .title {
+      font-size: 26px;
+      margin-bottom: 10px;
     }
-
     .stock {
       color: white;
-      font-size: 0.9rem;
       display: flex;
       align-items: center;
-      margin-bottom: 1rem;
+      font-size: 14px;
+      margin-bottom: 25px;
     }
-
-    .stock::before {
-      content: "";
+    .dot {
       width: 10px;
       height: 10px;
-      background: limegreen;
+      background-color: green;
       border-radius: 50%;
+      display: inline-block;
       margin-right: 8px;
     }
-
-    .options label,
-    .description {
-      margin: 1rem 0 0.5rem;
-      font-weight: bold;
-    }
-
-    .choices {
+    .options {
       display: flex;
-      gap: 1rem;
+      gap: 10px;
+      margin-bottom: 25px;
     }
-
-    .choices input[type="radio"] {
-      display: none;
-    }
-
-    .choices label {
-      border: 1px solid #888;
-      padding: 0.5rem 1rem;
-      border-radius: 999px;
-      cursor: pointer;
-      background: #0f0f0f;
+    .options button {
+      border: 1px solid white;
+      background-color: transparent;
       color: white;
-      font-size: 0.9rem;
+      padding: 8px 18px;
+      border-radius: 20px;
+      cursor: pointer;
     }
-
-    .choices input[type="radio"]:checked + label {
+    .options button.active {
+      font-weight: bold;
       border-color: white;
+    }
+    .buy-button {
+      width: 100%;
+      padding: 12px;
       background-color: white;
       color: black;
-    }
-
-    .button {
-      margin-top: 1rem;
-      padding: 0.7rem 1rem;
-      background: white;
+      font-weight: bold;
       border: none;
-      color: black;
-      font-size: 1rem;
+      border-radius: 4px;
       cursor: pointer;
+      margin-top: 10px;
     }
-
-    .description p {
-      font-size: 0.9rem;
-      line-height: 1.5;
-      margin: 0.2rem 0;
+    .desc {
+      font-size: 14px;
+      margin-top: 30px;
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 20px;
+      }
+      .nav-arrow.left, .nav-arrow.right {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="carousel">
-      <img id="mainImage" src="poster-mbk.jpg" alt="Poster MBK">
-      <div class="carousel-controls">
-        <button onclick="prevImage()">‹</button>
-        <button onclick="nextImage()">›</button>
+    <div class="left">
+      <div class="carousel">
+        <span class="nav-arrow left" onclick="changeSlide(-1)">&#10094;</span>
+        <img id="main-img" src="poster-mbk.jpg" alt="Poster MBK" />
+        <span class="nav-arrow right" onclick="changeSlide(1)">&#10095;</span>
       </div>
-      <div class="thumbnails">
-        <img src="poster-mbk.jpg" alt="Visuel 1" class="active" onclick="selectImage(0)">
-        <img src="poster-levres.jpg" alt="Visuel 2" onclick="selectImage(1)">
-        <img src="extra1.jpg" alt="Extra 1" onclick="selectImage(2)">
-        <img src="extra2.jpg" alt="Extra 2" onclick="selectImage(3)">
+      <div class="carousel-thumbnails">
+        <img src="poster-mbk.jpg" class="thumb active" onclick="selectSlide(0)" />
+        <img src="poster-levres.jpg" class="thumb" onclick="selectSlide(1)" />
+        <img src="extra1.jpg" class="thumb" onclick="selectSlide(2)" />
+        <img src="extra2.jpg" class="thumb" onclick="selectSlide(3)" />
       </div>
     </div>
-    <div class="product-info">
-      <h1>Poster "MBK"</h1>
-      <div class="stock">Item is in stock</div>
-
-      <div class="options">
-        <label>Choix :</label>
-        <div class="choices">
-          <input type="radio" name="visuel" id="choix1" checked onclick="selectImage(0)">
-          <label for="choix1">1</label>
-
-          <input type="radio" name="visuel" id="choix2" onclick="selectImage(1)">
-          <label for="choix2">2</label>
-        </div>
+    <div class="right">
+      <div class="title">Poster "MBK"</div>
+      <div class="stock"><span class="dot"></span> Item is in stock</div>
+      <div class="options" id="choice">
+        <button class="active" onclick="selectPoster(0)">1</button>
+        <button onclick="selectPoster(1)">2</button>
       </div>
-
       <div class="options">
-        <label>Taille :</label>
-        <div style="font-size: 0.95rem;">40x60cm</div>
+        <button class="active">40x60cm</button>
       </div>
-
-      <a href="https://buy.stripe.com/cNi6oJ7HZ8a24Lhat038402" class="button">Buy now</a>
-
-      <div class="description">
-        <p>Poster artistique – édition exclusive signée Studio Hikaïa.</p>
-        <p>25 exemplaires seulement.</p>
-        <p>• ALL SALES ARE FINAL :)</p>
-        <p>• 1/2 WEEKS DELIVERY</p>
-        <p>• No return & refund</p>
+      <a href="https://buy.stripe.com/cNi6oJ7HZ8a24Lhat038402" target="_blank">
+        <button class="buy-button">Buy Now</button>
+      </a>
+      <div class="desc">
+        Poster artistique – édition exclusive signée Studio Hikaïa.<br />
+        25 exemplaires seulement.<br /><br />
+        • ALL SALES ARE FINAL :)<br />
+        • 1/2 WEEKS DELIVERY<br />
+        • No return & refund
       </div>
     </div>
   </div>
-
   <script>
     const images = ["poster-mbk.jpg", "poster-levres.jpg", "extra1.jpg", "extra2.jpg"];
-    let currentIndex = 0;
+    let currentSlide = 0;
 
-    function updateImage(index) {
-      document.getElementById("mainImage").src = images[index];
-      document.querySelectorAll(".thumbnails img").forEach((img, i) => {
-        img.classList.toggle("active", i === index);
+    function updateCarousel() {
+      document.getElementById("main-img").src = images[currentSlide];
+      document.querySelectorAll(".thumb").forEach((img, i) => {
+        img.classList.toggle("active", i === currentSlide);
       });
     }
 
-    function selectImage(index) {
-      currentIndex = index;
-      updateImage(index);
+    function changeSlide(n) {
+      currentSlide = (currentSlide + n + images.length) % images.length;
+      updateCarousel();
     }
 
-    function nextImage() {
-      currentIndex = (currentIndex + 1) % images.length;
-      updateImage(currentIndex);
+    function selectSlide(index) {
+      currentSlide = index;
+      updateCarousel();
     }
 
-    function prevImage() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      updateImage(currentIndex);
+    function selectPoster(index) {
+      currentSlide = index;
+      updateCarousel();
+      document.querySelectorAll("#choice button").forEach((b, i) => {
+        b.classList.toggle("active", i === index);
+      });
     }
   </script>
 </body>
