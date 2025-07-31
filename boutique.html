@@ -1,186 +1,223 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Poster MBK</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Poster MBK – Studio Hikaïa</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
-      background-color: #0a0a0a;
-      color: white;
-      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      background-color: #0f0f0f;
+      color: white;
+      font-family: 'Helvetica Neue', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 2rem;
     }
+
     .container {
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 50px;
-      padding: 50px;
-      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
     }
-    .image-section {
-      flex: 1;
-      max-width: 600px;
+
+    .carousel {
+      max-width: 500px;
+      width: 100%;
       position: relative;
     }
-    .image-section img {
+
+    .carousel img {
       width: 100%;
       border-radius: 8px;
+      height: auto;
     }
-    .carousel-thumbs {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 15px;
-    }
-    .carousel-thumbs img {
-      width: 70px;
-      height: 70px;
-      object-fit: cover;
-      border: 1px solid white;
-      cursor: pointer;
-    }
-    .carousel-arrows {
-      position: absolute;
-      top: 50%;
-      width: 100%;
+
+    .carousel-controls {
       display: flex;
       justify-content: space-between;
-      transform: translateY(-50%);
-      pointer-events: none;
+      margin-top: 0.5rem;
     }
-    .carousel-arrows span {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      padding: 10px;
-      pointer-events: auto;
+
+    .carousel-controls button {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: white;
       cursor: pointer;
     }
-    .product-section {
-      flex: 1;
-      max-width: 400px;
+
+    .thumbnails {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
     }
-    .product-title {
-      font-size: 28px;
+
+    .thumbnails img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .thumbnails img.active {
+      border-color: white;
+    }
+
+    .product-info {
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-info h1 {
+      font-size: 2rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .stock {
+      color: white;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .stock::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: limegreen;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .options label,
+    .description {
+      margin: 1rem 0 0.5rem;
       font-weight: bold;
     }
-    .stock {
-      color: #00ff00;
-      font-size: 14px;
-      margin: 5px 0;
+
+    .choices {
+      display: flex;
+      gap: 1rem;
     }
-    .choices, .size-option {
-      margin: 15px 0;
+
+    .choices input[type="radio"] {
+      display: none;
     }
-    .choices button {
-      background-color: transparent;
-      color: white;
-      border: 1px solid white;
-      margin-right: 10px;
-      padding: 5px 10px;
+
+    .choices label {
+      border: 1px solid #888;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
       cursor: pointer;
+      background: #0f0f0f;
+      color: white;
+      font-size: 0.9rem;
     }
-    .choices button.active {
+
+    .choices input[type="radio"]:checked + label {
+      border-color: white;
       background-color: white;
       color: black;
     }
-    .buy-buttons button {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 16px;
+
+    .button {
+      margin-top: 1rem;
+      padding: 0.7rem 1rem;
+      background: white;
+      border: none;
+      color: black;
+      font-size: 1rem;
       cursor: pointer;
     }
-    .buy-buttons a {
-      text-decoration: none;
-    }
-    .description {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #ccc;
+
+    .description p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 0.2rem 0;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="image-section">
-      <div class="carousel-arrows">
-        <span onclick="prevImage()">❮</span>
-        <span onclick="nextImage()">❯</span>
-      </div>
+    <div class="carousel">
       <img id="mainImage" src="poster-mbk.jpg" alt="Poster MBK">
-      <div class="carousel-thumbs">
-        <img src="poster-mbk.jpg" onclick="changeMainImage('poster-mbk.jpg')">
-        <img src="poster-levres.jpg" onclick="changeMainImage('poster-levres.jpg')">
-        <img src="extra1.jpg" onclick="changeMainImage('extra1.jpg')">
-        <img src="extra2.jpg" onclick="changeMainImage('extra2.jpg')">
+      <div class="carousel-controls">
+        <button onclick="prevImage()">‹</button>
+        <button onclick="nextImage()">›</button>
+      </div>
+      <div class="thumbnails">
+        <img src="poster-mbk.jpg" alt="Visuel 1" class="active" onclick="selectImage(0)">
+        <img src="poster-levres.jpg" alt="Visuel 2" onclick="selectImage(1)">
+        <img src="extra1.jpg" alt="Extra 1" onclick="selectImage(2)">
+        <img src="extra2.jpg" alt="Extra 2" onclick="selectImage(3)">
       </div>
     </div>
+    <div class="product-info">
+      <h1>Poster "MBK"</h1>
+      <div class="stock">Item is in stock</div>
 
-    <div class="product-section">
-      <div class="product-title">Poster "MBK"</div>
-      <div class="stock">● Item is in stock</div>
+      <div class="options">
+        <label>Choix :</label>
+        <div class="choices">
+          <input type="radio" name="visuel" id="choix1" checked onclick="selectImage(0)">
+          <label for="choix1">1</label>
 
-      <div class="choices">
-        <strong>Choix :</strong><br>
-        <button onclick="selectPoster(1)" id="choice1" class="active">1</button>
-        <button onclick="selectPoster(2)" id="choice2">2</button>
+          <input type="radio" name="visuel" id="choix2" onclick="selectImage(1)">
+          <label for="choix2">2</label>
+        </div>
       </div>
 
-      <div class="size-option">
-        <strong>Taille :</strong> 40x60cm
+      <div class="options">
+        <label>Taille :</label>
+        <div style="font-size: 0.95rem;">40x60cm</div>
       </div>
 
-      <div class="buy-buttons">
-        <form action="cart.html">
-          <button type="submit">Add to Cart</button>
-        </form>
-        <a href="https://buy.stripe.com/cNi6oJ7HZ8a24Lhat038402" target="_blank">
-          <button style="background-color: white; color: black;">Payer avec Apple Pay</button>
-        </a>
-      </div>
+      <a href="https://buy.stripe.com/cNi6oJ7HZ8a24Lhat038402" class="button">Buy now</a>
 
       <div class="description">
-        Poster artistique – édition exclusive signée Studio Hikaïa.<br>
-        25 exemplaires seulement.<br><br>
-        ● ALL SALES ARE FINAL :)<br>
-        ● 1/2 WEEKS DELIVERY<br>
-        ● No return & refund
+        <p>Poster artistique – édition exclusive signée Studio Hikaïa.</p>
+        <p>25 exemplaires seulement.</p>
+        <p>• ALL SALES ARE FINAL :)</p>
+        <p>• 1/2 WEEKS DELIVERY</p>
+        <p>• No return & refund</p>
       </div>
     </div>
   </div>
 
   <script>
-    let currentChoice = 1;
-    let currentImageIndex = 0;
-    const images = ['poster-mbk.jpg', 'poster-levres.jpg', 'extra1.jpg', 'extra2.jpg'];
+    const images = ["poster-mbk.jpg", "poster-levres.jpg", "extra1.jpg", "extra2.jpg"];
+    let currentIndex = 0;
 
-    function selectPoster(num) {
-      currentChoice = num;
-      document.getElementById('mainImage').src = num === 1 ? 'poster-mbk.jpg' : 'poster-levres.jpg';
-      document.getElementById('choice1').classList.remove('active');
-      document.getElementById('choice2').classList.remove('active');
-      document.getElementById('choice' + num).classList.add('active');
+    function updateImage(index) {
+      document.getElementById("mainImage").src = images[index];
+      document.querySelectorAll(".thumbnails img").forEach((img, i) => {
+        img.classList.toggle("active", i === index);
+      });
     }
 
-    function changeMainImage(src) {
-      document.getElementById('mainImage').src = src;
-      currentImageIndex = images.indexOf(src);
-    }
-
-    function prevImage() {
-      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-      document.getElementById('mainImage').src = images[currentImageIndex];
+    function selectImage(index) {
+      currentIndex = index;
+      updateImage(index);
     }
 
     function nextImage() {
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      document.getElementById('mainImage').src = images[currentImageIndex];
+      currentIndex = (currentIndex + 1) % images.length;
+      updateImage(currentIndex);
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateImage(currentIndex);
     }
   </script>
 </body>
