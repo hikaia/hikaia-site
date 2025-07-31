@@ -24,17 +24,34 @@
       font-size: 1.8rem;
       margin-bottom: 20px;
     }
-    .image-gallery {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
+    .carousel {
+      position: relative;
+      max-width: 100%;
       margin-bottom: 20px;
-      justify-content: center;
     }
-    .image-gallery img {
-      height: 400px;
+    .carousel img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+    .thumbnails {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .thumbnails img {
+      width: 80px;
+      height: auto;
       border-radius: 8px;
-      flex-shrink: 0;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: 0.3s;
+    }
+    .thumbnails img.active {
+      opacity: 1;
+      border: 2px solid white;
     }
     .choice-buttons {
       display: flex;
@@ -69,8 +86,8 @@
       background-color: #ccc;
     }
     @media (max-width: 600px) {
-      .image-gallery img {
-        height: 250px;
+      .thumbnails img {
+        width: 60px;
       }
     }
   </style>
@@ -79,13 +96,19 @@
   <div class="container">
     <h1>Poster MBK - 40x60cm</h1>
 
-    <div class="image-gallery" id="gallery">
-      <img src="poster-mbk.jpg" alt="Poster 1" class="poster-image">
+    <div class="carousel">
+      <img id="mainImage" src="poster-mbk.jpg" alt="Poster">
+      <div class="thumbnails" id="thumbnails">
+        <img src="poster-mbk.jpg" class="thumb active" onclick="setImage(0)">
+        <img src="poster-levres.jpg" class="thumb" onclick="setImage(1)">
+        <img src="poster-detail1.jpg" class="thumb" onclick="setImage(2)">
+        <img src="poster-detail2.jpg" class="thumb" onclick="setImage(3)">
+      </div>
     </div>
 
     <div class="choice-buttons">
-      <button onclick="selectPoster(1)" id="btn1" class="active">1</button>
-      <button onclick="selectPoster(2)" id="btn2">2</button>
+      <button onclick="selectPoster(0)" id="btn1" class="active">1</button>
+      <button onclick="selectPoster(1)" id="btn2">2</button>
     </div>
 
     <a href="https://buy.stripe.com/cNi6oJ7HZ8a24Lhat038402">
@@ -94,30 +117,35 @@
   </div>
 
   <script>
-    const gallery = document.getElementById("gallery");
+    const images = [
+      "poster-mbk.jpg",
+      "poster-levres.jpg",
+      "poster-detail1.jpg",
+      "poster-detail2.jpg"
+    ];
+
+    const mainImage = document.getElementById("mainImage");
+    const thumbs = document.querySelectorAll(".thumb");
     const btn1 = document.getElementById("btn1");
     const btn2 = document.getElementById("btn2");
 
-    const posters = {
-      1: ["poster-mbk.jpg", "poster-mbk-detail1.jpg", "poster-mbk-detail2.jpg"],
-      2: ["poster-levres.jpg", "poster-levres-detail1.jpg", "poster-levres-detail2.jpg"]
-    };
+    function setImage(index) {
+      mainImage.src = images[index];
+      thumbs.forEach((img, i) => {
+        img.classList.toggle("active", i === index);
+      });
+    }
 
     function selectPoster(num) {
-      // toggle active button
-      btn1.classList.remove("active");
-      btn2.classList.remove("active");
-      if (num === 1) btn1.classList.add("active");
-      else btn2.classList.add("active");
-
-      // update images
-      gallery.innerHTML = "";
-      posters[num].forEach(src => {
-        const img = document.createElement("img");
-        img.src = src;
-        img.alt = `Poster ${num}`;
-        gallery.appendChild(img);
-      });
+      if (num === 0) {
+        setImage(0); // MBK
+        btn1.classList.add("active");
+        btn2.classList.remove("active");
+      } else {
+        setImage(1); // Lèvres
+        btn1.classList.remove("active");
+        btn2.classList.add("active");
+      }
     }
   </script>
 </body>
