@@ -44,3 +44,50 @@ main {
   padding: 0.6rem 1rem;
   border-radius: 4px;
 }
+
+
+header {
+  width: 100%;
+  background-color: #000;
+  color: white;
+  font-family: 'Helvetica Neue', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.top-marquee {
+  background-color: #000;
+  color: white;
+  padding: 5px 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #444;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.logo-container img {
+  height: 40px;
+  filter: brightness(0) invert(1);
+}
