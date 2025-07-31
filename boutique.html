@@ -2,37 +2,90 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Boutique – Hikaïa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boutique Hikaïa</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #111;
+      color: #fff;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .product {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .product img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 8px;
+    }
+    .product select, .product a.button {
+      margin-top: 1rem;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .product select {
+      background-color: #fff;
+      color: #000;
+    }
+    .product a.button {
+      background-color: #fff;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .product a.button:hover {
+      background-color: #ccc;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Boutique</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="boutique.html">Boutique</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main class="boutique">
-    <div class="produit">
-      <img src="images/tshirt.jpg" alt="T-shirt Drop 1">
-      <h2>T-shirt Hikaïa – Drop 01</h2>
-      <p>Édition limitée. 100% coton bio.</p>
-      <a href="https://buy.stripe.com/test-link" class="btn">Acheter – 39€</a>
+  <div class="container">
+    <h1>Poster MBK - 40x60cm</h1>
+    <div class="product">
+      <img id="preview" src="poster.jpg" alt="Poster MBK">
+      <select id="posterSelect">
+        <option value="poster.jpg">Visuel 1 - Lèvres</option>
+        <option value="tshirt.jpg">Visuel 2 - MBK Ventre</option>
+      </select>
+      <a href="https://buy.stripe.com/cNi6oJ7HZ8a24Lhat038402" class="button">Acheter - 25€</a>
     </div>
-
-    <div class="produit">
-      <img src="images/poster.jpg" alt="Poster A3">
-      <h2>Poster A3 – Cosmic Bloom</h2>
-      <p>Affiche imprimée sur papier mat 200g.</p>
-      <a href="https://buy.stripe.com/test-link" class="btn">Acheter – 19€</a>
-    </div>
-  </main>
-
-  <footer>
-    <p>© Hikaïa – Tous droits réservés</p>
-  </footer>
+  </div>
+  <script>
+    const select = document.getElementById("posterSelect");
+    const img = document.getElementById("preview");
+    select.addEventListener("change", () => {
+      img.src = select.value;
+    });
+  </script>
 </body>
 </html>
