@@ -3,148 +3,164 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boutique - Studio Hikaïa</title>
+  <title>Poster MBK - Boutique Hikaïa</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
-      background-color: #111;
-      color: #fff;
-      font-family: sans-serif;
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
     }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-      text-align: center;
-      background-color: #1a1a1a;
-      border-radius: 12px;
-    }
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-    }
-    .carousel {
-      position: relative;
-      max-width: 100%;
-      margin-bottom: 20px;
-    }
-    .carousel img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-    }
-    .thumbnails {
+
+    .product-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
       display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
       flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
     }
+
+    .gallery {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .main-image {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 10px;
+    }
+
+    .thumbnails {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+
     .thumbnails img {
-      width: 80px;
-      height: auto;
-      border-radius: 8px;
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
       cursor: pointer;
-      opacity: 0.6;
-      transition: 0.3s;
+      border-radius: 5px;
+      border: 2px solid transparent;
     }
-    .thumbnails img.active {
-      opacity: 1;
+
+    .thumbnails img.selected {
       border: 2px solid white;
     }
-    .choice-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 20px 0;
+
+    .details {
+      flex: 1;
+      min-width: 300px;
     }
-    .choice-buttons button {
-      background-color: #111;
-      color: white;
-      border: 1px solid white;
-      padding: 12px 20px;
-      border-radius: 8px;
+
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .price {
+      font-size: 20px;
+      margin: 15px 0;
+    }
+
+    .options label, .options .selected-option {
+      display: inline-block;
+      border: 1px solid #777;
+      padding: 8px 16px;
+      margin: 5px;
+      border-radius: 999px;
       cursor: pointer;
-      font-size: 1rem;
     }
-    .choice-buttons button.active {
-      background-color: white;
-      color: black;
-    }
-    .buy-btn {
-      padding: 14px 26px;
+
+    .options .selected-option {
       background-color: white;
       color: black;
       font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
     }
-    .buy-btn:hover {
+
+    .buy-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: white;
+      color: black;
+      font-weight: bold;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .buy-button:hover {
       background-color: #ccc;
     }
-    @media (max-width: 600px) {
-      .thumbnails img {
-        width: 60px;
-      }
+
+    .desc {
+      margin-top: 20px;
+      font-size: 14px;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Poster MBK - 40x60cm</h1>
-
-    <div class="carousel">
-      <img id="mainImage" src="poster-mbk.jpg" alt="Poster">
-      <div class="thumbnails" id="thumbnails">
-        <img src="poster-mbk.jpg" class="thumb active" onclick="setImage(0)">
-        <img src="poster-levres.jpg" class="thumb" onclick="setImage(1)">
-        <img src="poster-detail1.jpg" class="thumb" onclick="setImage(2)">
-        <img src="poster-detail2.jpg" class="thumb" onclick="setImage(3)">
+  <div class="product-container">
+    <div class="gallery">
+      <img id="mainImage" src="poster-mbk.jpg" class="main-image" alt="Poster MBK">
+      <div class="thumbnails">
+        <img src="poster-mbk.jpg" class="selected" onclick="changeImage(this)">
+        <img src="poster-levres.jpg" onclick="changeImage(this)">
+        <img src="extra1.jpg" onclick="changeImage(this)">
+        <img src="extra2.jpg" onclick="changeImage(this)">
       </div>
     </div>
+    <div class="details">
+      <div class="title">Poster MBK - 40x60cm</div>
+      <div class="price">25€</div>
 
-    <div class="choice-buttons">
-      <button onclick="selectPoster(0)" id="btn1" class="active">1</button>
-      <button onclick="selectPoster(1)" id="btn2">2</button>
+      <div class="options">
+        <label id="choice1" class="selected-option" onclick="selectChoice(1)">1</label>
+        <label id="choice2" onclick="selectChoice(2)">2</label>
+      </div>
+
+      <div class="options">
+        <div class="selected-option">40x60</div>
+      </div>
+
+      <a class="buy-button" href="https://buy.stripe.com/cNi6oJ7HZ8a24Lhat038402">Acheter avec Apple Pay</a>
+
+      <div class="desc">
+        Poster artistique – édition exclusive signée Studio Hikaïa.
+      </div>
     </div>
-
-    <a href="https://buy.stripe.com/cNi6oJ7HZ8a24Lhat038402">
-      <button class="buy-btn">Acheter - 25€</button>
-    </a>
   </div>
 
   <script>
-    const images = [
-      "poster-mbk.jpg",
-      "poster-levres.jpg",
-      "poster-detail1.jpg",
-      "poster-detail2.jpg"
-    ];
+    const mainImage = document.getElementById('mainImage');
+    const thumbnails = document.querySelectorAll('.thumbnails img');
+    let currentPoster = 'poster-mbk.jpg';
 
-    const mainImage = document.getElementById("mainImage");
-    const thumbs = document.querySelectorAll(".thumb");
-    const btn1 = document.getElementById("btn1");
-    const btn2 = document.getElementById("btn2");
-
-    function setImage(index) {
-      mainImage.src = images[index];
-      thumbs.forEach((img, i) => {
-        img.classList.toggle("active", i === index);
-      });
+    function changeImage(el) {
+      thumbnails.forEach(img => img.classList.remove('selected'));
+      el.classList.add('selected');
+      mainImage.src = el.src;
     }
 
-    function selectPoster(num) {
-      if (num === 0) {
-        setImage(0); // MBK
-        btn1.classList.add("active");
-        btn2.classList.remove("active");
+    function selectChoice(num) {
+      document.getElementById('choice1').classList.remove('selected-option');
+      document.getElementById('choice2').classList.remove('selected-option');
+      document.getElementById(`choice${num}`).classList.add('selected-option');
+      if (num === 1) {
+        mainImage.src = 'poster-mbk.jpg';
+        thumbnails[0].click();
       } else {
-        setImage(1); // Lèvres
-        btn1.classList.remove("active");
-        btn2.classList.add("active");
+        mainImage.src = 'poster-levres.jpg';
+        thumbnails[1].click();
       }
     }
   </script>
