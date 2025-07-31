@@ -3,89 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boutique Hikaïa</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Boutique - Studio Hikaïa</title>
   <style>
     body {
-      margin: 0;
-      font-family: sans-serif;
       background-color: #111;
       color: #fff;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
     }
     .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
+      max-width: 600px;
+      margin: 50px auto;
+      text-align: center;
+      background-color: #1a1a1a;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.05);
     }
     h1 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
     }
-    .product {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: #1a1a1a;
-      border-radius: 10px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-    }
-    .product img {
-      width: 100%;
-      max-width: 400px;
+    img {
+      max-width: 100%;
+      height: auto;
       border-radius: 8px;
+      margin-bottom: 20px;
     }
-    .product select, .product a.button {
-      margin-top: 1rem;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
+    select, button {
+      padding: 12px 16px;
       font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      margin: 10px 5px;
     }
-    .product select {
-      background-color: #fff;
-      color: #000;
+    select {
+      background-color: #111;
+      color: white;
+      border: 1px solid #aaa;
     }
-    .product a.button {
-      background-color: #fff;
-      color: #000;
-      text-decoration: none;
+    button {
+      background-color: white;
+      color: black;
       font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
-    .product a.button:hover {
+    button:hover {
       background-color: #ccc;
     }
+
     @media (max-width: 600px) {
       .container {
-        padding: 1rem;
-      }
-      h1 {
-        font-size: 1.5rem;
+        margin: 30px 15px;
+        padding: 20px;
       }
     }
   </style>
 </head>
 <body>
+
   <div class="container">
     <h1>Poster MBK - 40x60cm</h1>
-    <div class="product">
-      <img id="preview" src="poster.jpg" alt="Poster MBK">
-      <select id="posterSelect">
-        <option value="poster.jpg">Visuel 1 - Lèvres</option>
-        <option value="tshirt.jpg">Visuel 2 - MBK Ventre</option>
+    <img id="posterImage" src="poster-mbk.jpg" alt="Poster MBK">
+    
+    <div>
+      <select id="imageSelector" onchange="changeImage()">
+        <option value="poster-mbk.jpg">1</option>
+        <option value="poster-levres.jpg">2</option>
       </select>
-      <a href="https://buy.stripe.com/cNi6oJ7HZ8a24Lhat038402" class="button">Acheter - 25€</a>
+    </div>
+
+    <div>
+      <a href="https://buy.stripe.com/cNi6oJ7HZ8a24Lhat038402">
+        <button>Acheter - 25€</button>
+      </a>
     </div>
   </div>
+
   <script>
-    const select = document.getElementById("posterSelect");
-    const img = document.getElementById("preview");
-    select.addEventListener("change", () => {
-      img.src = select.value;
-    });
+    function changeImage() {
+      const selector = document.getElementById("imageSelector");
+      const image = document.getElementById("posterImage");
+      image.src = selector.value;
+    }
   </script>
+
 </body>
 </html>
