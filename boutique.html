@@ -12,9 +12,27 @@
       margin: 0;
       padding: 0;
     }
+    .marquee-container {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: black;
+      padding: 10px 0;
+      z-index: 1000;
+    }
+    .marquee-text {
+      display: inline-block;
+      padding-left: 100%;
+      white-space: nowrap;
+      animation: scrollText 15s linear infinite;
+      font-size: 12px;
+    }
+    @keyframes scrollText {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
     header {
-      position: relative;
-      padding: 20px 40px;
+      padding: 60px 40px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -26,25 +44,12 @@
     .menu a {
       color: #fff;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: normal;
+      font-size: 13px;
     }
     .logo {
       width: 40px;
       height: 40px;
-    }
-    .marquee-container {
-      overflow: hidden;
-      white-space: nowrap;
-      margin: 20px 0;
-    }
-    .marquee-text {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scrollText 15s linear infinite;
-    }
-    @keyframes scrollText {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
     }
     .container {
       display: flex;
@@ -52,18 +57,18 @@
       max-width: 1000px;
       margin: 0 auto;
       padding: 40px 20px;
-      gap: 40px;
+      gap: 60px;
       justify-content: center;
     }
     .carousel {
       position: relative;
       width: 400px;
-      height: auto;
     }
     .carousel img {
       width: 100%;
       height: auto;
       display: none;
+      border-radius: 6px;
     }
     .carousel img.active {
       display: block;
@@ -84,8 +89,28 @@
     .carousel .next {
       right: -40px;
     }
+    .preview-thumbnails {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .preview-thumbnails img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border: 1px solid white;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0.6;
+    }
+    .preview-thumbnails img.active {
+      opacity: 1;
+      border: 2px solid white;
+    }
     .product-details {
       max-width: 400px;
+      padding-top: 30px;
     }
     .status {
       color: white;
@@ -100,7 +125,7 @@
       border-radius: 50%;
     }
     .options, .size {
-      margin: 10px 0;
+      margin: 20px 0;
     }
     .option-btn, .size-btn {
       padding: 8px 16px;
@@ -117,10 +142,11 @@
     }
     .buy-btn {
       margin-top: 20px;
-      padding: 12px 20px;
+      padding: 12px 24px;
       background-color: white;
       color: black;
       border: none;
+      border-radius: 30px;
       cursor: pointer;
       font-weight: bold;
     }
@@ -131,6 +157,9 @@
   </style>
 </head>
 <body>
+  <div class="marquee-container">
+    <div class="marquee-text">WHO NEEDS DRUGS WHEN I CAN LOOK AT YOUR EYES ELENA? — WHO NEEDS DRUGS WHEN I CAN LOOK AT YOUR EYES ELENA? — </div>
+  </div>
   <header>
     <div class="menu">
       <a href="index.html">Portfolio</a>
@@ -139,17 +168,22 @@
     </div>
     <img src="logo-chat.png" alt="Logo Hikaïa" class="logo">
   </header>
-  <div class="marquee-container">
-    <div class="marquee-text">WHO NEEDS DRUGS WHEN I CAN LOOK AT YOUR EYES ELENA? — WHO NEEDS DRUGS WHEN I CAN LOOK AT YOUR EYES ELENA? — </div>
-  </div>
   <div class="container">
-    <div class="carousel">
-      <img src="poster-mbk.jpg" alt="Poster MBK" class="active">
-      <img src="poster-levres.jpg" alt="Poster Lèvres">
-      <img src="extra1.jpg" alt="Extra 1">
-      <img src="extra2.jpg" alt="Extra 2">
-      <button class="prev" onclick="prevImage()">‹</button>
-      <button class="next" onclick="nextImage()">›</button>
+    <div>
+      <div class="carousel">
+        <img src="poster-mbk.jpg" alt="Poster MBK" class="active">
+        <img src="poster-levres.jpg" alt="Poster Lèvres">
+        <img src="extra1.jpg" alt="Extra 1">
+        <img src="extra2.jpg" alt="Extra 2">
+        <button class="prev" onclick="prevImage()">‹</button>
+        <button class="next" onclick="nextImage()">›</button>
+      </div>
+      <div class="preview-thumbnails">
+        <img src="poster-mbk.jpg" onclick="selectImage(0)" class="active">
+        <img src="poster-levres.jpg" onclick="selectImage(1)">
+        <img src="extra1.jpg" onclick="selectImage(2)">
+        <img src="extra2.jpg" onclick="selectImage(3)">
+      </div>
     </div>
     <div class="product-details">
       <h2>Poster "MBK"</h2>
@@ -177,11 +211,12 @@
   </div>
   <script>
     const images = document.querySelectorAll('.carousel img');
+    const thumbs = document.querySelectorAll('.preview-thumbnails img');
     let currentIndex = 0;
 
     function showImage(index) {
-      images.forEach(img => img.classList.remove('active'));
-      images[index].classList.add('active');
+      images.forEach((img, i) => img.classList.toggle('active', i === index));
+      thumbs.forEach((thumb, i) => thumb.classList.toggle('active', i === index));
     }
 
     function prevImage() {
@@ -200,6 +235,11 @@
       document.querySelectorAll('.option-btn').forEach((btn, i) => {
         btn.classList.toggle('active', i === index);
       });
+    }
+
+    function selectImage(index) {
+      currentIndex = index;
+      showImage(index);
     }
   </script>
 </body>
