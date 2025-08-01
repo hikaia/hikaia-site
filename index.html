@@ -1,117 +1,152 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio – Studio Hikaïa</title>
-  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       background-color: #000;
-      color: white;
-      font-family: 'Helvetica Neue', sans-serif;
+      color: #fff;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
     }
-    header {
-      width: 100%;
-      background-color: #000;
-      color: white;
-      font-family: 'Helvetica Neue', sans-serif;
-      position: sticky;
+    .marquee-container {
+      position: fixed;
       top: 0;
+      width: 100%;
+      background-color: black;
+      padding: 10px 0;
       z-index: 1000;
+      overflow: hidden;
     }
-    .top-marquee {
-      background-color: #000;
-      color: white;
-      padding: 5px 0;
-      font-size: 14px;
-      text-transform: uppercase;
-      border-bottom: 1px solid #444;
+    .marquee-track {
+      display: flex;
+      animation: scrollText 30s linear infinite;
+      white-space: nowrap;
+      gap: 120px;
+      transform: translateX(-50%);
     }
-    .main-nav {
+    .marquee-text {
+      font-size: 12px;
+    }
+    @keyframes scrollText {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    header {
+      padding: 60px 40px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 15px 40px;
+      flex-wrap: wrap;
+      position: relative;
     }
-    .main-nav ul {
+    .menu {
       display: flex;
       gap: 20px;
-      list-style: none;
-      padding: 0;
-      margin: 0;
+      flex: 1;
+      flex-wrap: wrap;
     }
-    .main-nav a {
-      color: white;
+    .menu a {
+      color: #fff;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 15px;
+      font-weight: normal;
+      font-size: 13px;
     }
-    .logo-container img {
+    .logo {
+      width: 40px;
       height: 40px;
-      filter: brightness(0) invert(1);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px;
+    .logo-link {
+      display: inline-block;
+      z-index: 10;
+    }
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 100px;
+      }
+      .menu {
+        justify-content: center;
+        margin-top: 10px;
+      }
+      .logo {
+        position: relative;
+        left: auto;
+        transform: none;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+    }
+    .portfolio-container {
+      max-width: 1200px;
+      margin: 140px auto 60px;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
     }
     .portfolio-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
+      width: 300px;
+      text-align: center;
     }
     .portfolio-item img {
       width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.4s ease;
+      border-radius: 8px;
+      margin-bottom: 10px;
     }
-    .portfolio-item:hover img {
-      transform: scale(1.05);
+    .portfolio-item h2 {
+      font-size: 16px;
+      font-weight: normal;
     }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
-    <div class="top-marquee">
-      <marquee behavior="scroll" direction="left">
-        who needs drugs when i can look at your eyes elena?
-      </marquee>
+  <div class="marquee-container">
+    <div class="marquee-track">
+      <div class="marquee-text">WHO NEEDS DRUGS WHEN I CAN LOOK AT YOUR EYES ELENA?</div>
+      <div class="marquee-text">&nbsp;</div>
+      <div class="marquee-text">WHO NEEDS DRUGS WHEN I CAN LOOK AT YOUR EYES ELENA?</div>
+      <div class="marquee-text">&nbsp;</div>
+      <div class="marquee-text">WHO NEEDS DRUGS WHEN I CAN LOOK AT YOUR EYES ELENA?</div>
     </div>
-    <nav class="main-nav">
-      <ul class="left-nav">
-        <li><a href="index.html">Portfolio</a></li>
-        <li><a href="boutique.html">Boutique</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <div class="logo-container">
-        <img src="logo-chat.png" alt="Logo Hikaïa">
-      </div>
-      <ul class="right-nav"></ul>
-    </nav>
+  </div>
+
+  <header>
+    <div class="menu">
+      <a href="index.html">Portfolio</a>
+      <a href="boutique.html">Boutique</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="index.html" class="logo-link">
+      <img src="logo-chat.png" alt="Logo Hikaïa" class="logo">
+    </a>
   </header>
 
-  <!-- PORTFOLIO GRID -->
-  <main class="portfolio-grid">
+  <div class="portfolio-container">
     <div class="portfolio-item">
-      <img src="img1.jpg" alt="Projet 1">
+      <img src="assets/photo1.jpg" alt="Projet 1">
+      <h2>Projet Photo 1</h2>
     </div>
     <div class="portfolio-item">
-      <img src="img2.jpg" alt="Projet 2">
+      <img src="assets/photo2.jpg" alt="Projet 2">
+      <h2>Projet Photo 2</h2>
     </div>
     <div class="portfolio-item">
-      <img src="img3.jpg" alt="Projet 3">
+      <img src="assets/photo3.jpg" alt="Projet 3">
+      <h2>Projet Photo 3</h2>
     </div>
     <div class="portfolio-item">
-      <img src="img4.jpg" alt="Projet 4">
+      <img src="assets/photo4.jpg" alt="Projet 4">
+      <h2>Projet Photo 4</h2>
     </div>
-    <!-- Tu peux dupliquer des blocs ici pour plus de visuels -->
-  </main>
+  </div>
 </body>
 </html>
