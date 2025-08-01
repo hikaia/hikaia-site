@@ -2,25 +2,131 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Contact – Hikaïa</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – Studio Hikaïa</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .marquee-container {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: black;
+      padding: 10px 0;
+      z-index: 1000;
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex;
+      animation: scrollText 30s linear infinite;
+      white-space: nowrap;
+      gap: 120px;
+      transform: translateX(-50%);
+    }
+    .marquee-text {
+      font-size: 12px;
+    }
+    @keyframes scrollText {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    header {
+      padding: 60px 40px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .menu {
+      display: flex;
+      gap: 20px;
+      flex: 1;
+    }
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: normal;
+      font-size: 13px;
+    }
+    .logo {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .logo-link {
+      display: inline-block;
+    }
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 100px;
+      }
+      .menu {
+        justify-content: center;
+        margin-top: 10px;
+      }
+      .logo {
+        position: relative;
+        left: auto;
+        transform: none;
+        margin-top: -70px;
+      }
+    }
+    .contact-container {
+      max-width: 600px;
+      margin: 140px auto 60px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .contact-container h1 {
+      font-size: 26px;
+      margin-bottom: 30px;
+    }
+    .contact-container p {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+    .contact-container a {
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
+  <div class="marquee-container">
+    <div class="marquee-track">
+      <div class="marquee-text">WHO NEEDS DRUGS WHEN I CAN LOOK AT YOUR EYES ELENA?</div>
+      <div class="marquee-text">&nbsp;</div>
+      <div class="marquee-text">WHO NEEDS DRUGS WHEN I CAN LOOK AT YOUR EYES ELENA?</div>
+      <div class="marquee-text">&nbsp;</div>
+      <div class="marquee-text">WHO NEEDS DRUGS WHEN I CAN LOOK AT YOUR EYES ELENA?</div>
+    </div>
+  </div>
+
   <header>
-    <h1>Contact</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
+    <div class="menu">
+      <a href="index.html">Portfolio</a>
       <a href="boutique.html">Boutique</a>
       <a href="contact.html">Contact</a>
-    </nav>
+    </div>
+    <a href="index.html" class="logo-link">
+      <img src="logo-chat.png" alt="Logo Hikaïa" class="logo">
+    </a>
   </header>
 
-  <main>
-    <p>Tu peux m’écrire à : <a href="mailto:contact@hikaia.fr">contact@hikaia.fr</a></p>
-  </main>
-
-  <footer>
-    <p>© Hikaïa – Tous droits réservés</p>
-  </footer>
+  <div class="contact-container">
+    <h1>Me contacter</h1>
+    <p>📧 <a href="mailto:elena@hikaia.fr">elena@hikaia.fr</a></p>
+    <p>📸 <a href="https://instagram.com/elenambk_" target="_blank">@elenambk_</a></p>
+  </div>
 </body>
 </html>
