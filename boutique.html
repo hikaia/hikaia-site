@@ -6,54 +6,80 @@
   <title>Boutique – Studio Hikaïa</title>
   <style>
     body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: black;
-      color: white;
-      font-family: Helvetica, Arial, sans-serif;
     }
-    header {
-      position: relative;
-      padding: 20px 0;
-      border-bottom: 1px solid white;
-    }
-    nav {
-      position: absolute;
-      top: 50%;
-      left: 20px;
-      transform: translateY(-50%);
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    .logo-center {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .logo-center img {
-      height: 60px;
-    }
-    .scrolling-text {
+    .marquee-container {
+      position: fixed;
+      top: 0;
       width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
-      box-sizing: border-box;
-      border-top: 1px solid white;
-      border-bottom: 1px solid white;
+      background-color: black;
       padding: 10px 0;
+      z-index: 1000;
+      overflow: hidden;
     }
-    .scrolling-text p {
-      display: inline-block;
-      animation: scroll-left 20s linear infinite;
-      font-size: 14px;
-      letter-spacing: 2px;
+    .marquee-track {
+      display: flex;
+      animation: scrollText 30s linear infinite;
+      white-space: nowrap;
+      gap: 120px;
+      transform: translateX(-50%);
     }
-    @keyframes scroll-left {
+    .marquee-text {
+      font-size: 12px;
+    }
+    @keyframes scrollText {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
+    }
+    header {
+      padding: 60px 40px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .menu {
+      display: flex;
+      gap: 20px;
+      flex: 1;
+    }
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: normal;
+      font-size: 13px;
+    }
+    .logo {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .logo-link {
+      display: inline-block;
+    }
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 100px;
+      }
+      .menu {
+        justify-content: center;
+        margin-top: 10px;
+      }
+      .logo {
+        position: relative;
+        left: auto;
+        transform: none;
+        margin-top: -70px;
+      }
     }
     .product-grid {
       display: grid;
@@ -89,11 +115,6 @@
       margin-bottom: 10px;
     }
     @media (max-width: 600px) {
-      nav {
-        position: static;
-        text-align: center;
-        margin-bottom: 10px;
-      }
       .product-grid {
         padding: 30px 20px;
       }
@@ -101,20 +122,25 @@
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html">Accueil</a>
-    </nav>
-    <div class="logo-center">
-      <a href="index.html"><img src="assets/logo-chat.png" alt="Logo Hikaïa"></a>
+  <div class="marquee-container">
+    <div class="marquee-track">
+      <div class="marquee-text">WHO NEEDS DRUGS WHEN I CAN LOOK AT YOUR EYES ELENA?</div>
+      <div class="marquee-text">&nbsp;</div>
+      <div class="marquee-text">WHO NEEDS DRUGS WHEN I CAN LOOK AT YOUR EYES ELENA?</div>
+      <div class="marquee-text">&nbsp;</div>
+      <div class="marquee-text">WHO NEEDS DRUGS WHEN I CAN LOOK AT YOUR EYES ELENA?</div>
     </div>
-  </header>
-
-  <div class="scrolling-text">
-    <p>
-      POSTER DISPONIBLE – BABY TEE DISPONIBLE BIENTÔT – MAGAZINE DISPONIBLE BIENTÔT – TEE-SHIRT DISPONIBLE BIENTÔT – POSTER DISPONIBLE – BABY TEE DISPONIBLE BIENTÔT – MAGAZINE DISPONIBLE BIENTÔT – TEE-SHIRT DISPONIBLE BIENTÔT
-    </p>
   </div>
+  <header>
+    <div class="menu">
+      <a href="index.html">Portfolio</a>
+      <a href="boutique.html">Boutique</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="index.html" class="logo-link">
+      <img src="logo-chat.png" alt="Logo Hikaïa" class="logo">
+    </a>
+  </header>
 
   <main class="product-grid">
     <div class="product">
