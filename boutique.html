@@ -5,76 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Boutique – Studio Hikaïa</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    body {
-      background-color: black;
-      color: white;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .header {
-      text-align: center;
-      padding: 40px 0;
-    }
-    .logo {
-      height: 60px;
-    }
-    .product-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      padding: 40px 20px;
-    }
-    .product {
-      width: 250px;
-      text-align: center;
-    }
-    .product img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    }
-    .product h2 {
-      font-size: 16px;
-      margin: 15px 0 5px;
-      font-weight: normal;
-    }
-    .product p {
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-    .buy-btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background: white;
-      color: black;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-    .buy-btn:hover {
-      background: grey;
-      color: white;
-    }
-    @media (max-width: 600px) {
-      .product {
-        width: 100%;
-        max-width: 300px;
-      }
-    }
-  </style>
 </head>
 <body>
-  <div class="header">
-    <a href="index.html"><img src="assets/logo-hikaia.png" alt="Logo" class="logo"></a>
-  </div>
+  <header>
+    <div class="logo-container">
+      <a href="index.html"><img src="assets/logo-hikaia.png" alt="Logo Hikaïa" class="logo"></a>
+    </div>
+    <div class="scrolling-text">
+      <p>
+        POSTER DISPONIBLE – BABY TEE DISPONIBLE BIENTÔT – MAGAZINE DISPONIBLE BIENTÔT – TEE-SHIRT DISPONIBLE BIENTÔT – POSTER DISPONIBLE – BABY TEE DISPONIBLE BIENTÔT – MAGAZINE DISPONIBLE BIENTÔT – TEE-SHIRT DISPONIBLE BIENTÔT
+      </p>
+    </div>
+  </header>
 
-  <div class="product-grid">
+  <main class="product-grid">
     <div class="product">
-      <img src="assets/poster.jpg" alt="Poster MBK">
+      <img src="assets/poster-mbk.jpg" alt="Poster MBK">
       <h2>Poster MBK</h2>
       <p>25€</p>
       <a href="https://buy.stripe.com/cNi6oJ7HZ8a24Lhat038402" class="buy-btn">Acheter</a>
@@ -83,23 +29,27 @@
     <div class="product">
       <img src="assets/magazine.jpg" alt="Magazine">
       <h2>Magazine</h2>
-      <p>Prix à venir</p>
-      <a href="#" class="buy-btn">Bientôt</a>
+      <p>Bientôt disponible</p>
+      <a href="#" class="buy-btn">À venir</a>
     </div>
 
     <div class="product">
       <img src="assets/babytee.jpg" alt="Baby Tee">
       <h2>Baby Tee</h2>
-      <p>Prix à venir</p>
-      <a href="#" class="buy-btn">Bientôt</a>
+      <p>Bientôt disponible</p>
+      <a href="#" class="buy-btn">À venir</a>
     </div>
 
     <div class="product">
-      <img src="assets/teeshirt.jpg" alt="Tee-shirt Classique">
+      <img src="assets/tee-shirt.jpg" alt="Tee-shirt Classique">
       <h2>Tee-shirt Classique</h2>
-      <p>Prix à venir</p>
-      <a href="#" class="buy-btn">Bientôt</a>
+      <p>Bientôt disponible</p>
+      <a href="#" class="buy-btn">À venir</a>
     </div>
-  </div>
+  </main>
+
+  <footer>
+    <!-- Footer vide pour l’instant -->
+  </footer>
 </body>
 </html>
