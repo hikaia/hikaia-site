@@ -13,10 +13,27 @@
       font-family: Helvetica, Arial, sans-serif;
     }
     header {
-      text-align: center;
-      padding: 30px 0 10px;
+      position: relative;
+      padding: 20px 0;
+      border-bottom: 1px solid white;
     }
-    .logo-container img {
+    nav {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .logo-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .logo-center img {
       height: 60px;
     }
     .scrolling-text {
@@ -72,6 +89,11 @@
       margin-bottom: 10px;
     }
     @media (max-width: 600px) {
+      nav {
+        position: static;
+        text-align: center;
+        margin-bottom: 10px;
+      }
       .product-grid {
         padding: 30px 20px;
       }
@@ -80,15 +102,19 @@
 </head>
 <body>
   <header>
-    <div class="logo-container">
+    <nav>
+      <a href="index.html">Accueil</a>
+    </nav>
+    <div class="logo-center">
       <a href="index.html"><img src="assets/logo-chat.png" alt="Logo Hikaïa"></a>
     </div>
-    <div class="scrolling-text">
-      <p>
-        POSTER DISPONIBLE – BABY TEE DISPONIBLE BIENTÔT – MAGAZINE DISPONIBLE BIENTÔT – TEE-SHIRT DISPONIBLE BIENTÔT – POSTER DISPONIBLE – BABY TEE DISPONIBLE BIENTÔT – MAGAZINE DISPONIBLE BIENTÔT – TEE-SHIRT DISPONIBLE BIENTÔT
-      </p>
-    </div>
   </header>
+
+  <div class="scrolling-text">
+    <p>
+      POSTER DISPONIBLE – BABY TEE DISPONIBLE BIENTÔT – MAGAZINE DISPONIBLE BIENTÔT – TEE-SHIRT DISPONIBLE BIENTÔT – POSTER DISPONIBLE – BABY TEE DISPONIBLE BIENTÔT – MAGAZINE DISPONIBLE BIENTÔT – TEE-SHIRT DISPONIBLE BIENTÔT
+    </p>
+  </div>
 
   <main class="product-grid">
     <div class="product">
