@@ -47,6 +47,7 @@
       display: flex;
       gap: 20px;
       flex: 1;
+      flex-wrap: wrap;
     }
     .menu a {
       color: #fff;
@@ -63,6 +64,7 @@
     }
     .logo-link {
       display: inline-block;
+      z-index: 10;
     }
     @media (max-width: 600px) {
       header {
@@ -78,7 +80,8 @@
         position: relative;
         left: auto;
         transform: none;
-        margin-top: -70px;
+        margin-top: 10px;
+        margin-bottom: 20px;
       }
     }
     .contact-container {
@@ -124,7 +127,7 @@
   </header>
 
   <div class="contact-container">
-    <h1>Me contacter</h1>
+    <h1>Contact me</h1>
     <p>📧 <a href="mailto:elena@hikaia.fr">elena@hikaia.fr</a></p>
     <p>📸 <a href="https://instagram.com/elenambk_" target="_blank">@elenambk_</a></p>
   </div>
